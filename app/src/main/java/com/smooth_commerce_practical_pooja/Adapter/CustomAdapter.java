@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
     Activity context;
-    public static boolean flag =false;
+    public static int  flag =0;
     ArrayList<Colors> colorsnewlist;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -73,12 +73,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.ivFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (flag==true){
+                if (flag==0){
                     holder.ivFav.setImageDrawable(context.getResources().getDrawable(R.drawable.like));
-                    flag=false;
+                    flag=1;
                 }else{
                     holder.ivFav.setImageDrawable(context.getResources().getDrawable(R.drawable.dislike));
-                    flag=true;
+                    flag=0;
                 }
             }
         });
