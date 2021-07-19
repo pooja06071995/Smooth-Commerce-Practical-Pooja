@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.smooth_commerce_practical_pooja.Adapter.CustomAdapter;
 
@@ -38,12 +40,25 @@ public class MainActivity extends AppCompatActivity {
         etSearch = (EditText) findViewById(R.id.etSearch);
         btnSearch = (Button) findViewById(R.id.btnSearch);
         rvColors = (RecyclerView) findViewById(R.id.rvColors);
-
+        callcolor("KEYWORDS");
         rvColors.setLayoutManager(new GridLayoutManager(this,2));
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etSearch.getText().toString()!=null&&etSearch.getText().toString().length()>0){
+                    callcolor(etSearch.getText().toString());
+                }else {
+                    Toast.makeText(MainActivity.this, "Please Enter Title First!!!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
 
+    }
 
-        Call<ArrayList<Colors>> call2 = apiInterface.getColors("KEYWORDS","json","20");
+    public void callcolor(String keyword){
+        Call<ArrayList<Colors>> call2 = apiInterface.getColors(keyword,"json","20");
         call2.enqueue(new Callback<ArrayList<Colors>>() {
             @Override
             public void onResponse(Call<ArrayList<Colors>> call, Response<ArrayList<Colors>> response) {
@@ -61,8 +76,5 @@ public class MainActivity extends AppCompatActivity {
                 call.cancel();
             }
         });
-
-
-
     }
 }
