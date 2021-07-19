@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Smooth-Commerce-Practical-Pooja</string>
+    <string name="title">Title:</string>
+    <string name="hex">Hex:</string>
+    <string name="Search">Search</string>
+    <string name="image_search">Image Search</string>
+</resources>
